@@ -22,13 +22,13 @@ function PriceBox() {
   return (
     <>
       <Timer />
-      <div className="grid grid-cols-3 gap-[37px]">
+      <div className="flex gap-[20px]  ">
         {gasArray.map((gas, index) => (
           <div
-            className="w-full max-w-[289px] h-[316px] bg-[#020815] border border-[#839AE7] rounded-2xl font-bold font-dsans"
+            className="w-[289px] h-[316px] bg-[#020815] border border-[#839AE7] rounded-2xl font-bold font-dsans"
             key={index}
           >
-            <div className="pt-6 px-6">
+            <div className="w-full mt-6 px-6">
               <div className="flex items-center gap-1.5">
                 <Imagecomp image={"ethereum.png"} />
                 <span className="font-bold text-[20px]">{gas.chain}</span>

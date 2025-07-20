@@ -1,14 +1,11 @@
 import { ethers } from "ethers";
 import useGasStore from "../store/gasZustand";
 
-// Polygon Uniswap V3 MATIC/USDC Pool (0.05% fee tier)
 const MATIC_USDC_POOL = "0xA374094527e1673A86dE625aa59517c5dE346d32";
 const POOL_ABI = [
   "function slot0() view returns (uint160 sqrtPriceX96, int24 tick, uint16 observationIndex, uint16 observationCardinality, uint16 observationCardinalityNext, uint8 feeProtocol, bool unlocked)",
 ];
-const provider = new ethers.WebSocketProvider(
-  "wss://polygon-mainnet.g.alchemy.com/v2/xhut2tWPNVIiRCLslcYMYH1VZ0sWP2nb"
-);
+const provider = new ethers.WebSocketProvider(process.env.NEXT_PUBLIC_POLY_API);
 
 let lastUpdate = 0;
 export async function subscribePolygonGas() {
@@ -16,7 +13,7 @@ export async function subscribePolygonGas() {
 
   provider.on("block", async () => {
     const now = Date.now();
-    if (now - lastUpdate < 6000) return; // throttle updates to every 6s
+    if (now - lastUpdate < 6000) return;
     lastUpdate = now;
 
     try {

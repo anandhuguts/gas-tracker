@@ -15,7 +15,7 @@ export async function subscribeEtheriumgonGas() {
 
   provider.on("block", async () => {
     const now = Date.now();
-    if (now - lastUpdate < 6000) return; // throttle updates to every 6s
+    if (now - lastUpdate < 6000) return;
     lastUpdate = now;
 
     try {
@@ -48,5 +48,3 @@ export async function subscribeEtheriumgonGas() {
     }
   });
 }
-
-// Reusable ETH/USD price fetcher

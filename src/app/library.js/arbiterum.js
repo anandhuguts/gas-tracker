@@ -1,9 +1,7 @@
 import { ethers } from "ethers";
 import useGasStore from "../store/gasZustand";
 
-const provider = new ethers.WebSocketProvider(
-  "wss://arb-mainnet.g.alchemy.com/v2/xhut2tWPNVIiRCLslcYMYH1VZ0sWP2nb"
-);
+const provider = new ethers.WebSocketProvider(process.env.NEXT_PUBLIC_ARB_API);
 
 const ETH_USDC_POOL = "0xC31E54c7a869B9FcBEcc14363CF510d1c41fa443";
 const POOL_ABI = [
@@ -17,7 +15,7 @@ export async function subscribeArbitrumGas() {
 
   provider.on("block", async () => {
     const now = Date.now();
-    if (now - lastUpdate < 6000) return; // throttle updates to every 6s
+    if (now - lastUpdate < 6000) return;
     lastUpdate = now;
 
     try {

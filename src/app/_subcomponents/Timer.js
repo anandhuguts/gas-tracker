@@ -6,10 +6,10 @@ function Timer() {
   useEffect(() => {
     const interval = setInterval(() => {
       setSecondsLeft((prev) => {
-        if (prev === 1) return 6; // reset every 6 seconds
+        if (prev === 1) return 6;
         return prev - 1;
       });
-    }, 1000); // update every second
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
